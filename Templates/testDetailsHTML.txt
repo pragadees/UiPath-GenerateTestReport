@@ -1,0 +1,38 @@
+<div class="tab-pane fade testCaseDetail" id="{{testId}}" role="tabpanel" aria-labelledby="{{testId}}-tab">
+        <div class="row">
+            <div class="col-sm-12" style="font-size:1.25rem;">{{testCaseName}}</div>
+            <div class="col-sm-12">
+                <p class="badge badge-success">Passed: {{passCount}}</p>
+                <p class="badge badge-danger">Failed: {{failCount}}</p>
+            </div>
+            <ul class="nav nav-tabs assertionlog-tab" id="nav-tab{{testId}}" style="width:100%;">
+                <li class="active">
+                    <a href="#tc-{{testId}}-assert" class="nav-link active-testcase-tab">Assertions</a>
+                </li>
+                <li>
+                    <a href="#tc-{{testId}}-logs" class="nav-link">Logs</a>
+                </li>
+            </ul>
+
+            <div class="tab-content container">
+                <div class="tab-pane fade active in" id="tc-{{testId}}-assert">
+                    <table class="table" style="font-size:0.85rem;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Timestamp</th>
+                                <th scope="col" class="w-25">Assertion Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col" class="w-50">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{assertionTable}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="tc-{{testId}}-logs" style="margin-top:0.5rem;">
+                    {{testCaseLogs}}
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,468 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Generate_Excel_Report" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_StrReportPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_DtmStartTime" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_DtmEndTime" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_TspnTotalExecutionTime" Type="InArgument(x:TimeSpan)" />
+    <x:Property Name="in_StrOverallStatus" Type="InArgument(x:String)" />
+    <x:Property Name="in_DtTestCaseStats" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DtAssertionStats" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_StrTestSetName" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>958,3145</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="34">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="35">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Generate_Excel_Report" sap:VirtualizedContainerService.HintSize="968,3080" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtOverallTestStats" />
+      <Variable x:TypeArguments="x:String" Name="strTestCaseName">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="strStartTime">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="strEndTime">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="strDataVariation">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="strStatus">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtFormattedResults" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:JoinDataTables DisplayName="Join test Case and Assertion Data Tables" sap:VirtualizedContainerService.HintSize="906,60" sap2010:WorkflowViewState.IdRef="JoinDataTables_1" JoinType="Left">
+      <ui:JoinDataTables.Arguments>
+        <scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="4">
+          <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EQ">
+            <ui:JoinOperationArgument.Column1>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"ID"</mca:CSharpValue>
+              </InArgument>
+            </ui:JoinOperationArgument.Column1>
+            <ui:JoinOperationArgument.Column2>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">"ID"</mca:CSharpValue>
+              </InArgument>
+            </ui:JoinOperationArgument.Column2>
+          </ui:JoinOperationArgument>
+        </scg:List>
+      </ui:JoinDataTables.Arguments>
+      <ui:JoinDataTables.DataTable1>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">in_DtTestCaseStats</mca:CSharpValue>
+        </InArgument>
+      </ui:JoinDataTables.DataTable1>
+      <ui:JoinDataTables.DataTable2>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">in_DtAssertionStats</mca:CSharpValue>
+        </InArgument>
+      </ui:JoinDataTables.DataTable2>
+      <ui:JoinDataTables.OutputDataTable>
+        <OutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">dtOverallTestStats</mca:CSharpReference>
+        </OutArgument>
+      </ui:JoinDataTables.OutputDataTable>
+    </ui:JoinDataTables>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="ID" DisplayName="Remove ID Data Column" sap:VirtualizedContainerService.HintSize="906,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1">
+      <ui:RemoveDataColumn.DataTable>
+        <InOutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">dtOverallTestStats</mca:CSharpReference>
+        </InOutArgument>
+      </ui:RemoveDataColumn.DataTable>
+    </ui:RemoveDataColumn>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="ID_1" DisplayName="Remove ID_1 Data Column" sap:VirtualizedContainerService.HintSize="906,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2">
+      <ui:RemoveDataColumn.DataTable>
+        <InOutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">dtOverallTestStats</mca:CSharpReference>
+        </InOutArgument>
+      </ui:RemoveDataColumn.DataTable>
+    </ui:RemoveDataColumn>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="JobKey" DisplayName="Remove Job Key Data Column" sap:VirtualizedContainerService.HintSize="906,186" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3">
+      <ui:RemoveDataColumn.DataTable>
+        <InOutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_29">dtOverallTestStats</mca:CSharpReference>
+        </InOutArgument>
+      </ui:RemoveDataColumn.DataTable>
+    </ui:RemoveDataColumn>
+    <Assign DisplayName="Clone the Datatable" sap:VirtualizedContainerService.HintSize="906,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_14">dtFormattedResults</mca:CSharpReference>
+        </OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_35">dtOverallTestStats.Clone()</mca:CSharpValue>
+        </InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Datetime and Int columns are not nullable. So converted these column types to String" DisplayName="change the Date column Type" sap:VirtualizedContainerService.HintSize="906,236" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:Type">
+                <mca:CSharpReference x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpReference`1_16">dtFormattedResults.Columns["Start Time"].DataType</mca:CSharpReference>
+              </OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:Type">
+                <mca:CSharpValue x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">typeof(String)</mca:CSharpValue>
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_12">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:Type">
+                <mca:CSharpReference x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">dtFormattedResults.Columns["End Time"].DataType</mca:CSharpReference>
+              </OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:Type">
+                <mca:CSharpValue x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpValue`1_38">typeof(String)</mca:CSharpValue>
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_13">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:Type">
+                <mca:CSharpReference x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpReference`1_20">dtFormattedResults.Columns["Data Variation"].DataType</mca:CSharpReference>
+              </OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:Type">
+                <mca:CSharpValue x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpValue`1_43">typeof(String)</mca:CSharpValue>
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_14">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="s:Type">
+                <mca:CSharpReference x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpReference`1_21">dtFormattedResults.Columns["Timestamp"].DataType</mca:CSharpReference>
+              </OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="s:Type">
+                <mca:CSharpValue x:TypeArguments="s:Type" sap2010:WorkflowViewState.IdRef="CSharpValue`1_46">typeof(String)</mca:CSharpValue>
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:MultipleAssign>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="906,878" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <If sap2010:Annotation.AnnotationText="This logic is used to remove the duplication of test case details for test cases having multiple assertions" DisplayName="If Same Test Case" sap:VirtualizedContainerService.HintSize="872,761" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_51" xml:space="preserve">CurrentRow["Test Case Name"].ToString().Equals(strTestCaseName) &amp;&amp;
+CurrentRow["Start Time"].ToString().Equals(strStartTime) &amp;&amp;
+CurrentRow["End Time"].ToString().Equals(strEndTime)&amp;&amp;
+CurrentRow["Data Variation"].ToString().Equals(strDataVariation)&amp;&amp;
+CurrentRow["Status"].ToString().Equals(strStatus)</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <ui:AddDataRow DataRow="{x:Null}" DisplayName="Remove Test Case Details" sap:VirtualizedContainerService.HintSize="334,189" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                <ui:AddDataRow.ArrayRow>
+                  <InArgument x:TypeArguments="s:Object[]">
+                    <mca:CSharpValue x:TypeArguments="s:Object[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_52" xml:space="preserve">new Object[]{ "", "","","","",CurrentRow["AssertionName"], Convert.ToDateTime(CurrentRow["Timestamp"]).ToString("dd/MMM/yyyy HH:mm:ss tt"),
+	CurrentRow["AssertionStatus"], CurrentRow["AssertionMessage"] }</mca:CSharpValue>
+                  </InArgument>
+                </ui:AddDataRow.ArrayRow>
+                <ui:AddDataRow.DataTable>
+                  <InOutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_22">dtFormattedResults</mca:CSharpReference>
+                  </InOutArgument>
+                </ui:AddDataRow.DataTable>
+              </ui:AddDataRow>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Add all details" sap:VirtualizedContainerService.HintSize="493,565" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MultipleAssign DisplayName="Multiple Assign - Current test case info for comparison" sap:VirtualizedContainerService.HintSize="431,225" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                  <ui:MultipleAssign.AssignOperations>
+                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_15">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_23">strTestCaseName</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_53">CurrentRow["Test Case Name"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_16">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_24">strStartTime</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_54">CurrentRow["Start Time"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_25">strEndTime</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_55">CurrentRow["End Time"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_18">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_26">strDataVariation</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_56">CurrentRow["Data Variation"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_19">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_27">strStatus</mca:CSharpReference>
+                          </OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_57">CurrentRow["Status"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                    </scg:List>
+                  </ui:MultipleAssign.AssignOperations>
+                </ui:MultipleAssign>
+                <ui:AddDataRow DataRow="{x:Null}" DisplayName="Add Data Row - Entire data" sap:VirtualizedContainerService.HintSize="431,189" sap2010:WorkflowViewState.IdRef="AddDataRow_4">
+                  <ui:AddDataRow.ArrayRow>
+                    <InArgument x:TypeArguments="s:Object[]">
+                      <mca:CSharpValue x:TypeArguments="s:Object[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58" xml:space="preserve">new Object[]{ 
+	CurrentRow["Test Case Name"],
+	Convert.ToDateTime(CurrentRow["Start Time"]).ToString("dd/MMM/yyyy HH:mm:ss tt"),
+	Convert.ToDateTime(CurrentRow["End Time"]).ToString("dd/MMM/yyyy HH:mm:ss tt"),
+	Convert.ToInt32(CurrentRow["Data Variation"]) == 0 ? "" : CurrentRow["Data Variation"].ToString(),
+	CurrentRow["Status"],
+	CurrentRow["AssertionName"], 
+	Convert.ToDateTime(CurrentRow["Timestamp"]).ToString("dd/MMM/yyyy HH:mm:ss tt"),
+	CurrentRow["AssertionStatus"], 
+	CurrentRow["AssertionMessage"] 
+}</mca:CSharpValue>
+                    </InArgument>
+                  </ui:AddDataRow.ArrayRow>
+                  <ui:AddDataRow.DataTable>
+                    <InOutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_28">dtFormattedResults</mca:CSharpReference>
+                    </InOutArgument>
+                  </ui:AddDataRow.DataTable>
+                </ui:AddDataRow>
+              </Sequence>
+            </If.Else>
+          </If>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+      <ui:ForEachRow.DataTable>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">dtOverallTestStats</mca:CSharpValue>
+        </InArgument>
+      </ui:ForEachRow.DataTable>
+    </ui:ForEachRow>
+    <ui:WriteRange AddHeaders="False" DisplayName="Write Test Results" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="DetailedResults" StartingCell="A2">
+      <ui:WriteRange.DataTable>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_41">dtFormattedResults</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteRange.DataTable>
+      <ui:WriteRange.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteRange.WorkbookPath>
+    </ui:WriteRange>
+    <ui:WriteCell Cell="B1" DisplayName="Write Test Set Name" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteCell_1" SheetName="Summary">
+      <ui:WriteCell.Text>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">in_StrTestSetName</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.Text>
+      <ui:WriteCell.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.WorkbookPath>
+    </ui:WriteCell>
+    <ui:WriteCell Cell="F2" DisplayName="Write Execution Start" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteCell_2" SheetName="Summary">
+      <ui:WriteCell.Text>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">in_DtmStartTime.ToString("F", CultureInfo.CreateSpecificCulture("en-US"))</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.Text>
+      <ui:WriteCell.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.WorkbookPath>
+    </ui:WriteCell>
+    <ui:WriteCell Cell="F3" DisplayName="Write Execution End" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteCell_3" SheetName="Summary">
+      <ui:WriteCell.Text>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">in_DtmEndTime.ToString("F", CultureInfo.CreateSpecificCulture("en-US"))</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.Text>
+      <ui:WriteCell.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.WorkbookPath>
+    </ui:WriteCell>
+    <ui:WriteCell Cell="F4" DisplayName="Write Total Execution Time" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteCell_4" SheetName="Summary">
+      <ui:WriteCell.Text>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">String.Format("{0:%h}h {0:%m}m {0:%s}s", in_TspnTotalExecutionTime)</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.Text>
+      <ui:WriteCell.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.WorkbookPath>
+    </ui:WriteCell>
+    <ui:WriteCell Cell="F5" DisplayName="Overall Status" sap:VirtualizedContainerService.HintSize="906,116" sap2010:WorkflowViewState.IdRef="WriteCell_5" SheetName="Summary">
+      <ui:WriteCell.Text>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">in_StrOverallStatus</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.Text>
+      <ui:WriteCell.WorkbookPath>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">in_StrReportPath</mca:CSharpValue>
+        </InArgument>
+      </ui:WriteCell.WorkbookPath>
+    </ui:WriteCell>
+  </Sequence>
+</Activity>

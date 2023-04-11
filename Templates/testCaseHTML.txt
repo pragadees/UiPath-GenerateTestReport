@@ -1,0 +1,4 @@
+<a class="nav-link" id="{{testId}}-tab" data-toggle="pill" href="#{{testId}}" role="tab" aria-controls="v-pills-home">{{testCaseName}}
+	{{dataVariation}}
+	<p class="badge {{badgeClass}} float-right">{{testCaseStatus}}</p>
+</a>

@@ -1,0 +1,67 @@
+{
+  "name": "GenerateTestReport",
+  "description": "Library component to generate test report after test set execution.\r\nNote: This component will only work when the test cases are executed from Orchestrator. It will not work when a test case is executed using Studio.",
+  "main": "NewActivity.xaml",
+  "dependencies": {
+    "UiPath.Excel.Activities": "2.16.2",
+    "UiPath.System.Activities": "22.10.4",
+    "UiPathTeam.Runtime.Activities": "[2.0.0]"
+  },
+  "webServices": [],
+  "entitiesStores": [],
+  "schemaVersion": "4.0",
+  "studioVersion": "22.10.5.0",
+  "projectVersion": "1.0.5",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": true,
+    "isAttended": false,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Library",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": [
+        "Automations/API_Check_If_Test_Set_Execution_Completed.xaml",
+        "Automations/Extract_Test_Results.xaml",
+        "Automations/Copy_Template_File.xaml",
+        "Automations/Generate_Excel_Report.xaml",
+        "Automations/Generate_HTML_Report.xaml",
+        "ExcelTemplate.xlsx",
+        "HTMLTemplate.html",
+        "Config/assertionHTML.txt",
+        "Config/testCaseHTML.txt",
+        "Automations/API_Get_Job_Logs_using_JobKey.xaml",
+        "Templates/ExcelTemplate.xlsx",
+        "Templates/HTMLTemplate.html",
+        "Templates/testCaseHTML.txt",
+        "Templates/testDetailsHTML.txt"
+      ]
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "modernBehavior": true
+  },
+  "expressionLanguage": "CSharp",
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {
+    "iconUrl": ".package/PATH-4f96bcbf.png"
+  },
+  "targetFramework": "Legacy"
+}
